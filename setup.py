@@ -52,7 +52,7 @@ setuptools.setup(
         'pydicom>=2.3.0,!=2.4.0',
         'numpy>=1.19',
         'pillow>=8.3',
-        'pillow-jpls>=1.0',
+        'imagecodecs>=2023.9.18',
     ],
     extras_require={
         'libjpeg': [

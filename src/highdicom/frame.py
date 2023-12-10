@@ -17,6 +17,7 @@ from pydicom.uid import (
     UID,
     RLELossless,
 )
+from imagecodecs import jpegls_encode
 
 from highdicom.enum import (
     PhotometricInterpretationValues,
@@ -258,7 +259,6 @@ def encode_frame(
                 )
 
         elif transfer_syntax_uid == JPEGLSLossless:
-            import pillow_jpls  # noqa
             if samples_per_pixel == 1:
                 if planar_configuration is not None:
                     raise ValueError(
@@ -305,6 +305,7 @@ def encode_frame(
                     'Pixel representation must be 0 for '
                     'encoding of image frames with Lossless JPEG-LS codec.'
                 )
+            return jpegls_encode(array)
 
         if transfer_syntax_uid in compression_lut:
             image_format, kwargs = compression_lut[transfer_syntax_uid]
